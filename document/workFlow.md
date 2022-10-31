@@ -6,8 +6,7 @@
 担当する開発部分を記載。今回はざっくりで大丈夫。  
 
 ## ブランチの作成
-```console
-# ブランチの作成
+```
 git branch -b issue-{issue_number}
 ```
 
