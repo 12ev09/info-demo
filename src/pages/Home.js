@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Home = () => {
+
+    //useEffect()
     return (
         <div>
             This is Home Page
