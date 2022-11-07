@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import 'semantic-ui-css/semantic.min.css'
+import { Button } from "semantic-ui-react";
+
 
 const Home = () => {
 
@@ -37,6 +40,15 @@ const Home = () => {
                         })
                         .then(params => {
                                 console.log(params);
+                                setFilled({
+                                        author: "",
+                                        isbn: "",
+                                        itemPrice: "",
+                                        largeImageUrl: "",
+                                        publisherName: "",
+                                        salesDate: "",
+                                        title: "",
+                                })
                         });
         }
 
@@ -83,20 +95,56 @@ const Home = () => {
                         <div className="autofiller">
                                 <p>home page.</p>
                                 <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                <button onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
+                                <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
                                         Search
                                 </button>
                         </div>
 
                         <form className="autofill_revise" onSubmit={handleFormSubmit}>
-                                author: <input type="text" value={filled.author} onChange={handleChange('author')}></input><br></br>
-                                isbn: <input type="text" value={filled.isbn} onChange={handleChange('isbn')}></input><br></br>
-                                itemPrice: <input type="text" value={filled.itemPrice} onChange={handleChange('itemPrice')}></input><br></br>
-                                publisherName: <input type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input><br></br>
-                                salesDate: <input type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input><br></br>
-                                title: <input type="text" value={filled.title} onChange={handleChange('title')}></input><br></br>
-                                <input type="submit" value="Confirm" />
-                        </form>
+                                <div className="ui form">
+                                        <div className="three fields">
+                                                <div className="field">
+                                                        <label htmlFor="author">
+                                                                <div>author</div>
+                                                                <input id="author" type="text" value={filled.author} onChange={handleChange('author')}></input>
+                                                        </label>
+                                                </div>
+                                                <div className="field">
+                                                        <label htmlFor="isbn">
+                                                                <div>isbn</div>
+                                                                <input id="isbn" type="text" value={filled.isbn} onChange={handleChange('isbn')}></input>
+                                                        </label>
+                                                </div>
+                                                <div className="field">
+                                                        <label htmlFor="itemPrice">
+                                                                <div>itemPrice</div>
+                                                                <input id="itemPrice" type="text" value={filled.itemPrice} onChange={handleChange('itemPrice')}></input>
+                                                        </label>
+                                                </div>
+                                        </div>
+                                        <div className="three fields">
+                                                <div className="field">
+                                                        <label htmlFor="publisherName">
+                                                                <div>publisherName</div>
+                                                                <input id="publisherName" type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input><br></br>
+                                                        </label>
+                                                </div>
+                                                <div className="field">
+                                                        <label htmlFor="salesDate">
+                                                                <div>salesDate</div>
+                                                                <input id="salesDate" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input><br></br>
+                                                        </label>
+                                                </div>
+                                                <div className="field">
+                                                        <label htmlFor="title">
+                                                                <div>title</div>
+                                                                <input id="title" type="text" value={filled.title} onChange={handleChange('title')}></input><br></br>
+                                                        </label>
+                                                </div>
+                                        </div>
+                                </div>
+                                <input className="ui positive button" type="submit" value="Confirm" />
+                        </form >
                 </div >
         );
 }
