@@ -24,7 +24,7 @@ const Home = () => {
                 const p = {
                         format: "json",
                         applicationId: process.env.REACT_APP_APPLICATION_ID,
-                        isbnjan: "9784908686153",
+                        isbnjan: m,
                 }
 
 
@@ -59,17 +59,17 @@ const Home = () => {
                         <div class="autofiller">
                                 <p>home page.</p>
                                 <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                <button onClick={() => getInfo(msg)}>
-                                        Click me
+                                <button onClick={() => getInfo((msg!=="")?msg:"9784908686153")}>
+                                        Search
                                 </button>
                         </div>
                         <form class="autofill_revise">
-                                author<input name="autofill" type="text" value={filled.author} onChange={handleChange('author')}></input>
-                                isbn<input type="text" value={filled.isbn} onChange={handleChange('isbn')}></input>
-                                itemPrice<input type="text" value={filled.itemPrice} onChange={handleChange('itemPrice')}></input>
-                                publisherName<input type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input>
-                                salesDate<input type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
-                                title<input type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                author: <input name="autofill" type="text" value={filled.author} onChange={handleChange('author')}></input><br></br>
+                                isbn: <input type="text" value={filled.isbn} onChange={handleChange('isbn')}></input><br></br>
+                                itemPrice: <input type="text" value={filled.itemPrice} onChange={handleChange('itemPrice')}></input><br></br>
+                                publisherName: <input type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input><br></br>
+                                salesDate: <input type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input><br></br>
+                                title: <input type="text" value={filled.title} onChange={handleChange('title')}></input><br></br>
                                 <input type="submit" value="Confirm" />
                         </form>
                 </div>
