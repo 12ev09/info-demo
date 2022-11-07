@@ -22,11 +22,12 @@ REACT_APP_APPLICATION_ID={YOUR_APPLICATION_ID}
 ```
 
 ### setup json server
-create db.json and write here ↓
-``` json
-{
-        "items": []
-}
+```
+cp db_example.json db.json
+```
+Makefile
+```
+make json
 ```
 
 ### Start server

@@ -1,9 +1,11 @@
 # server start
-.PHONY: start
-open: start
+start:
 	npm start
 
 # json-server start
-.PHONY: db
-open: db
+db:
 	npm run json-server
+
+# create db.json
+json:
+	cp db_example.json db.json
