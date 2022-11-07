@@ -27,14 +27,10 @@ const Home = () => {
             isbnjan: "9784908686153",
         }
 
-
-
         axios.get(apiUrl, {
             params: p
         })
             .then(function (response) {
-                //console.log(response);
-                //console.log(response.data.Items[0].Item.author)
                 setFilled(
                     {
                         author: response.data.Items[0].Item.author,
@@ -49,7 +45,6 @@ const Home = () => {
             .catch(function (error) {
                 console.log(error);
             });
-
         setMsg("");
     }
 
