@@ -21,13 +21,15 @@ const Home = () => {
         const apiUrl = "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404";
 
         const getInfo = (m) => {
+                //only for debug use
+                if (m !== "") {
+                        m = "9784908686153"
+                }
                 const p = {
                         format: "json",
                         applicationId: process.env.REACT_APP_APPLICATION_ID,
                         isbnjan: m,
                 }
-
-
 
                 axios.get(apiUrl, {
                         params: p
@@ -56,14 +58,14 @@ const Home = () => {
 
         return (
                 <div>
-                        <div class="autofiller">
+                        <div className="autofiller">
                                 <p>home page.</p>
                                 <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                <button onClick={() => getInfo((msg!=="")?msg:"9784908686153")}>
+                                <button onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
                                         Search
                                 </button>
                         </div>
-                        <form class="autofill_revise">
+                        <form className="autofill_revise">
                                 author: <input name="autofill" type="text" value={filled.author} onChange={handleChange('author')}></input><br></br>
                                 isbn: <input type="text" value={filled.isbn} onChange={handleChange('isbn')}></input><br></br>
                                 itemPrice: <input type="text" value={filled.itemPrice} onChange={handleChange('itemPrice')}></input><br></br>
