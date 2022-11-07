@@ -18,6 +18,28 @@ const Home = () => {
                 setFilled({ ...filled, [input]: e.target.value });
         };
 
+        const handleFormSubmit = (event) => {
+                event.preventDefault();
+
+                const params = {
+                        title: "title",
+                        author: "hoge",
+                }
+                fetch('http://localhost:3001/items', {
+                        method: 'POST',
+                        headers: {
+                                'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(params)
+                })
+                        .then(response => {
+                                return response.json();
+                        })
+                        .then(params => {
+                                console.log(params);
+                        });
+        }
+
         const apiUrl = "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404";
 
         const getInfo = (m) => {
@@ -56,15 +78,15 @@ const Home = () => {
 
         return (
                 <div>
-                        <div class="autofiller">
+                        <div className="autofiller">
                                 <p>home page.</p>
                                 <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                <button onClick={() => getInfo((msg!=="")?msg:"9784908686153")}>
+                                <button onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
                                         Search
                                 </button>
                         </div>
-                        <form class="autofill_revise">
-                                author: <input name="autofill" type="text" value={filled.author} onChange={handleChange('author')}></input><br></br>
+                        <form className="autofill_revise" onSubmit={handleFormSubmit}>
+                                author: <input type="text" value={filled.author} onChange={handleChange('author')}></input><br></br>
                                 isbn: <input type="text" value={filled.isbn} onChange={handleChange('isbn')}></input><br></br>
                                 itemPrice: <input type="text" value={filled.itemPrice} onChange={handleChange('itemPrice')}></input><br></br>
                                 publisherName: <input type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input><br></br>
@@ -72,7 +94,7 @@ const Home = () => {
                                 title: <input type="text" value={filled.title} onChange={handleChange('title')}></input><br></br>
                                 <input type="submit" value="Confirm" />
                         </form>
-                </div>
+                </div >
         );
 }
 

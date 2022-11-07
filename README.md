@@ -21,7 +21,29 @@ npm i
 REACT_APP_APPLICATION_ID={YOUR_APPLICATION_ID}
 ```
 
+### setup json server
+create db.json and write here ↓
+``` json
+{
+        "items": []
+}
+```
+
 ### Start server
 ```
 npm start
+```
+Makefile
+```
+make start
+```
+
+### Start JSON server
+```
+npm run json-server
+```
+
+Makefile
+```
+make db
 ```
