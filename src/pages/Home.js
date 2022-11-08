@@ -141,7 +141,7 @@ const Home = () => {
 
         return (
                 <div>
-                        <div className={`${"autofiller"} ${"ui form"}`}>
+                        <div className={"autofiller ui form"}>
                                 <p>home page.</p>
                                 <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
                                 <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
@@ -149,7 +149,7 @@ const Home = () => {
                                 </button>
                         </div>
 
-                        <form className={`${"autofill_revise"} ${"ui form"}`} onSubmit={handleFormSubmit}>
+                        <form className="autofill_revise ui form" onSubmit={handleFormSubmit}>
                                 <div className="equal width fields">
                                         <div className="field">
                                                 <label>author</label>
