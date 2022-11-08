@@ -22,8 +22,13 @@ const Home = () => {
                 event.preventDefault();
 
                 const params = {
-                        title: "title",
-                        author: "hoge",
+                        title: filled.title,
+                        author: filled.author,
+                        isbn: filled.isbn,
+                        itemprice: filled.itemPrice,
+                        largeImageurl: filled.largeImageUrl,
+                        publisherName: filled.publisherName,
+                        salesDate: filled.salesDate
                 }
                 fetch('http://localhost:3001/items', {
                         method: 'POST',
