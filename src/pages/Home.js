@@ -7,7 +7,7 @@ const Home = () => {
 
         const [msg, setMsg] = useState("");
         const [filled, setFilled] = useState({
-                content_type: "",
+                contentType: "",
                 affiliateUrl: "",
                 artistName: "",
                 author: "",
@@ -78,28 +78,30 @@ const Home = () => {
                 })
                         .then(function (response) {
 
-                                let content_type;
+                                let contentType;
                                 //console.log(response);
                                 //console.log(response.data.Items[0].Item.author)
                                 if (response.data.Items[0].Item.hardware !== "") {
-                                        content_type = "Game";
-                                        //setFilled({ content_type: "game", })
+                                        contentType = "Game";
+                                        //setFilled({ contentType: "game", })
                                 } else if (response.data.Items[0].Item.os !== "") {
-                                        //setFilled({ content_type: "software", })
-                                        content_type = "Software";
+                                        //setFilled({ contentType: "software", })
+                                        contentType = "Software";
                                 } else if (response.data.Items[0].Item.artistName !== "") {
-                                        //setFilled({ content_type: "CD_DVD_BD", })
-                                        content_type = "CD_DVD_BD";
+                                        //setFilled({ contentType: "CD_DVD_BD", })
+                                        contentType = "CD_DVD_BD";
+                                } else if (response.data.Items[0].Item.publisherName !== "") {
+                                        //setFilled({ contentType: "books", })
+                                        contentType = "Books";
                                 } else {
-                                        //setFilled({ content_type: "books", })
-                                        content_type = "Books";
+                                        contentType = "Others";
                                 }
 
-                                console.log(content_type);
+                                console.log(contentType);
 
                                 setFilled(
                                         {//あたまわるい
-                                                content_type: content_type,
+                                                contentType: contentType,
                                                 affiliateUrl: response.data.Items[0].Item.affiliateUrl,
                                                 artistName: response.data.Items[0].Item.artistName,
                                                 author: response.data.Items[0].Item.author,
@@ -138,11 +140,12 @@ const Home = () => {
                 setMsg("");
         }
 
-        const content_type_selection = [
+        const contentTypeSelect = [
                 { key: 'Books', value: 'Books', text: 'Books' },
                 { key: 'CD_DVD_BD', value: 'CD_DVD_BD', text: 'CD/DVD/BD' },
                 { key: 'Goftware', value: 'Software', text: 'Software' },
                 { key: 'Game', value: 'Game', text: 'Game' },
+                { key: 'Others', value: 'Others', text: 'Others' },
         ]
 
         return (
@@ -179,7 +182,7 @@ const Home = () => {
                                         </div>
                                         <div className="field">
                                                 <label>type</label>
-                                                <Dropdown placeholder="Contents type" fluid search selection options={content_type_selection} value={filled.content_type} onChange={handleChange('content_type')}></Dropdown>
+                                                <Dropdown placeholder="Contents type" fluid search selection options={contentTypeSelect} value={filled.contentType} onChange={handleChange('contentType')}></Dropdown>
                                         </div>
                                 </div>
                                 <input className="ui positive button" type="submit" value="Confirm" />
