@@ -78,7 +78,7 @@ const Home = () => {
                 })
                         .then(function (response) {
 
-                                var content_type;
+                                let content_type;
                                 //console.log(response);
                                 //console.log(response.data.Items[0].Item.author)
                                 if (response.data.Items[0].Item.hardware !== "") {
