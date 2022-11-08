@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import 'semantic-ui-css/semantic.min.css'
-import { Button, Input } from "semantic-ui-react";
+import { Button, Input, Dropdown } from "semantic-ui-react";
 
 const Home = () => {
 
@@ -82,11 +82,11 @@ const Home = () => {
                                 //console.log(response);
                                 //console.log(response.data.Items[0].Item.author)
                                 if (response.data.Items[0].Item.hardware !== "") {
-                                        content_type = "game";
+                                        content_type = "Game";
                                         //setFilled({ content_type: "game", })
                                 } else if (response.data.Items[0].Item.os !== "") {
                                         //setFilled({ content_type: "software", })
-                                        content_type = "software";
+                                        content_type = "Software";
                                 } else if (response.data.Items[0].Item.artistName !== "") {
                                         //setFilled({ content_type: "CD_DVD_BD", })
                                         content_type = "CD_DVD_BD";
@@ -138,6 +138,12 @@ const Home = () => {
                 setMsg("");
         }
 
+        const content_type_selection = [
+                { key: 'Books', value: 'Books', text: 'Books' },
+                { key: 'CD_DVD_BD', value: 'CD_DVD_BD', text: 'CD/DVD/BD' },
+                { key: 'Goftware', value: 'Software', text: 'Software' },
+                { key: 'Game', value: 'Game', text: 'Game' },
+        ]
 
         return (
                 <div>
@@ -173,7 +179,7 @@ const Home = () => {
                                         </div>
                                         <div className="field">
                                                 <label>type</label>
-                                                <input type="text" value={filled.content_type} onChange={handleChange('title')}></input>
+                                                <Dropdown placeholder="Contents type" fluid search selection options={content_type_selection} value={filled.content_type} onChange={handleChange('content_type')}></Dropdown>
                                         </div>
                                 </div>
                                 <input className="ui positive button" type="submit" value="Confirm" />
