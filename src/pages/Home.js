@@ -44,7 +44,7 @@ const Home = () => {
 
         const getInfo = (m) => {
                 //only for debug use
-                if (m !== "") {
+                if (m == "") {
                         m = "9784908686153"
                 }
                 const p = {
