@@ -1,16 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import 'semantic-ui-css/semantic.min.css'
+import { Button, Input } from "semantic-ui-react";
 
 const Home = () => {
 
         const [msg, setMsg] = useState("");
         const [filled, setFilled] = useState({
+                content_type: "",
+                affiliateUrl: "",
+                artistName: "",
                 author: "",
+                availability: "",
+                booksGenreId: "",
+                chirayomiUrl: "",
+                discountPrice: "",
+                discountRate: "",
+                hardware: "",
                 isbn: "",
+                itemCaption: "",
                 itemPrice: "",
+                itemUrl: "",
+                jan: "",
+                label: "",
                 largeImageUrl: "",
+                limitedFlag: "",
+                listPrice: "",
+                mediumImageUrl: "",
+                os: "",
+                postageFlag: "",
                 publisherName: "",
+                reviewAverage: "",
+                reviewCount: "",
                 salesDate: "",
+                smallImageUrl: "",
                 title: "",
         });
 
@@ -43,10 +66,7 @@ const Home = () => {
         const apiUrl = "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404";
 
         const getInfo = (m) => {
-                //only for debug use
-                if (m !== "") {
-                        m = "9784908686153"
-                }
+
                 const p = {
                         format: "json",
                         applicationId: process.env.REACT_APP_APPLICATION_ID,
@@ -57,18 +77,59 @@ const Home = () => {
                         params: p
                 })
                         .then(function (response) {
+
+                                var content_type;
                                 //console.log(response);
                                 //console.log(response.data.Items[0].Item.author)
+                                if (response.data.Items[0].Item.hardware !== "") {
+                                        content_type = "game";
+                                        //setFilled({ content_type: "game", })
+                                } else if (response.data.Items[0].Item.os !== "") {
+                                        //setFilled({ content_type: "software", })
+                                        content_type = "software";
+                                } else if (response.data.Items[0].Item.artistName !== "") {
+                                        //setFilled({ content_type: "CD_DVD_BD", })
+                                        content_type = "CD_DVD_BD";
+                                } else {
+                                        //setFilled({ content_type: "books", })
+                                        content_type = "Books";
+                                }
+
+                                console.log(content_type);
+
                                 setFilled(
-                                        {
+                                        {//あたまわるい
+                                                content_type: content_type,
+                                                affiliateUrl: response.data.Items[0].Item.affiliateUrl,
+                                                artistName: response.data.Items[0].Item.artistName,
                                                 author: response.data.Items[0].Item.author,
+                                                availability: response.data.Items[0].Item.availability,
+                                                booksGenreId: response.data.Items[0].Item.booksGenreId,
+                                                chirayomiUrl: response.data.Items[0].Item.chirayomiUrl,
+                                                discountPrice: response.data.Items[0].Item.discountPrice,
+                                                discountRate: response.data.Items[0].Item.discountRate,
+                                                hardware: response.data.Items[0].Item.hardware,
                                                 isbn: response.data.Items[0].Item.isbn,
+                                                itemCaption: response.data.Items[0].Item.itemCaption,
                                                 itemPrice: response.data.Items[0].Item.itemPrice,
+                                                itemUrl: response.data.Items[0].Item.itemUrl,
+                                                jan: response.data.Items[0].Item.isbn,
+                                                label: response.data.Items[0].Item.label,
                                                 largeImageUrl: response.data.Items[0].Item.largeImageUrl,
+                                                limitedFlag: response.data.Items[0].Item.limitedFlag,
+                                                listPrice: response.data.Items[0].Item.listPrice,
+                                                mediumImageUrl: response.data.Items[0].Item.mediumImageUrl,
+                                                os: response.data.Items[0].Item.os,
+                                                postageFlag: response.data.Items[0].Item.postageFlag,
                                                 publisherName: response.data.Items[0].Item.publisherName,
+                                                reviewAverage: response.data.Items[0].Item.reviewAverage,
+                                                reviewCount: response.data.Items[0].Item.reviewCount,
                                                 salesDate: response.data.Items[0].Item.salesDate,
+                                                smallImageUrl: response.data.Items[0].Item.smallImageUrl,
                                                 title: response.data.Items[0].Item.title,
                                         })
+                                console.log(filled);
+
                         })
                         .catch(function (error) {
                                 console.log(error);
@@ -80,22 +141,42 @@ const Home = () => {
 
         return (
                 <div>
-                        <div className="autofiller">
+                        <div className={`${"autofiller"} ${"ui form"}`}>
                                 <p>home page.</p>
                                 <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                <button onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
+                                <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
                                         Search
                                 </button>
                         </div>
 
-                        <form className="autofill_revise" onSubmit={handleFormSubmit}>
-                                author: <input type="text" value={filled.author} onChange={handleChange('author')}></input><br></br>
-                                isbn: <input type="text" value={filled.isbn} onChange={handleChange('isbn')}></input><br></br>
-                                itemPrice: <input type="text" value={filled.itemPrice} onChange={handleChange('itemPrice')}></input><br></br>
-                                publisherName: <input type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input><br></br>
-                                salesDate: <input type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input><br></br>
-                                title: <input type="text" value={filled.title} onChange={handleChange('title')}></input><br></br>
-                                <input type="submit" value="Confirm" />
+                        <form className={`${"autofill_revise"} ${"ui form"}`} onSubmit={handleFormSubmit}>
+                                <div className="equal width fields">
+                                        <div className="field">
+                                                <label>author</label>
+                                                <input className="ui input" type="text" value={filled.author} onChange={handleChange('author')}></input>
+                                        </div>
+                                        <div className="field">
+                                                <label>isbn</label>
+                                                <input className="ui input" type="text" value={filled.isbn} onChange={handleChange('isbn')}></input>
+                                        </div>
+                                        <div className="field">
+                                                <label>publisherName</label>
+                                                <input className="ui input" type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input>
+                                        </div>
+                                        <div className="field">
+                                                <label>salesDate</label>
+                                                <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
+                                        </div>
+                                        <div className="field">
+                                                <label>title</label>
+                                                <input type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                        </div>
+                                        <div className="field">
+                                                <label>type</label>
+                                                <input type="text" value={filled.content_type} onChange={handleChange('title')}></input>
+                                        </div>
+                                </div>
+                                <input className="ui positive button" type="submit" value="Confirm" />
                         </form>
                 </div >
         );
