@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import 'semantic-ui-css/semantic.min.css'
-import { Button, Input, Dropdown } from "semantic-ui-react";
+import { Button, Input, Dropdown, Table } from "semantic-ui-react";
 
 const Home = () => {
 
@@ -37,16 +37,36 @@ const Home = () => {
                 title: "",
         });
 
+        const [items, setItems] = useState([]);
+
         const handleChange = (input) => e => {
                 setFilled({ ...filled, [input]: e.target.value });
         };
+
+        const createTable = () => {
+                axios.get('http://localhost:3001/items')
+                        .then(function (response) {
+                                setItems(response.data)
+                                console.log(items)
+                        })
+                        .catch(function (error) {
+                                console.log(error);
+                        })
+                        .catch(function (error) {
+                                console.log(error);
+                        });
+        }
 
         const handleFormSubmit = (event) => {
                 event.preventDefault();
 
                 const params = {
+                        author: "author",
                         title: "title",
-                        author: "hoge",
+                        isbn: "isbn",
+                        publisherName: "p",
+                        salesDate: "s",
+                        type: "software",
                 }
                 fetch('http://localhost:3001/items', {
                         method: 'POST',
@@ -60,6 +80,7 @@ const Home = () => {
                         })
                         .then(params => {
                                 console.log(params);
+                                createTable();
                         });
         }
 
@@ -140,6 +161,10 @@ const Home = () => {
                 setMsg("");
         }
 
+        useEffect(() => {
+                createTable()
+        }, [])
+
         const contentTypeSelect = [
                 { key: 'Books', value: 'Books', text: 'Books' },
                 { key: 'CD_DVD_BD', value: 'CD_DVD_BD', text: 'CD/DVD/BD' },
@@ -187,6 +212,32 @@ const Home = () => {
                                 </div>
                                 <input className="ui positive button" type="submit" value="Confirm" />
                         </form>
+                        <Table celled fixed singleLine>
+                                <Table.Header>
+                                        <Table.Row>
+                                                <Table.HeaderCell>Author</Table.HeaderCell>
+                                                <Table.HeaderCell>JAN</Table.HeaderCell>
+                                                <Table.HeaderCell>PublisherName</Table.HeaderCell>
+                                                <Table.HeaderCell>SalesDate</Table.HeaderCell>
+                                                <Table.HeaderCell>Title</Table.HeaderCell>
+                                                <Table.HeaderCell>Type</Table.HeaderCell>
+                                        </Table.Row>
+                                </Table.Header>
+                                <Table.Body>
+                                        {
+                                                items.map(({ id, author, isbn, publisherName, salesDate, title, contentType }) => {
+                                                        <Table.Row >
+                                                                <Table.Cell>{author}</Table.Cell>
+                                                                <Table.Cell>{isbn}</Table.Cell>
+                                                                <Table.Cell>{publisherName}</Table.Cell>
+                                                                <Table.Cell>{salesDate}</Table.Cell>
+                                                                <Table.Cell>{title}</Table.Cell>
+                                                                <Table.Cell>{contentType}</Table.Cell>
+                                                        </Table.Row>
+                                                })
+                                        }
+                                </Table.Body>
+                        </Table>
                 </div >
         );
 }
