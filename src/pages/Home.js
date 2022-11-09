@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import 'semantic-ui-css/semantic.min.css'
-import { Button, Input, Dropdown, Tab, Grid, Container, Table } from "semantic-ui-react";
+import { Button, Input, Dropdown, Tab, Grid, Container, Table, Select } from "semantic-ui-react";
 
 const Home = () => {
 
@@ -170,14 +170,6 @@ const Home = () => {
                 createTable()
         }, [])
 
-        const contentTypeSelect = [
-                { key: 'Books', value: 0, text: 'Books' },
-                { key: 'CD_DVD_BD', value: 1, text: 'CD/DVD/BD' },
-                { key: 'Software', value: 2, text: 'Software' },
-                { key: 'Game', value: 3, text: 'Game' },
-                { key: 'Others', value: 4, text: 'Others' },
-        ]
-
         const autofillRevisePanes = [
                 {
                         menuItem: 'Books', render: () =>
@@ -216,11 +208,21 @@ const Home = () => {
                                                 <Grid.Column>
                                                         <div className="field">
                                                                 <label>type</label>
-                                                                <Dropdown placeholder="Contents type" fluid search selection options={contentTypeSelect} value={filled.contentType} onChange={handleChange('contentType')}></Dropdown>
+                                                                <select
+                                                                        className="ui fluid search dropdown"
+                                                                        value={filled.contentType}
+                                                                        onChange={handleChange('contentType')}
+                                                                >
+                                                                        <option value={0}>Books</option>
+                                                                        <option value={1}>CD/DVD/BD</option>
+                                                                        <option value={2}>Software</option>
+                                                                        <option value={3}>Games</option>
+                                                                        <option value={4}>Others</option>
+                                                                </select>
                                                         </div>
                                                 </Grid.Column>
                                         </Grid>
-                                </Tab.Pane>
+                                </Tab.Pane >
                 },
                 { menuItem: 'CD/DVD/BD', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
                 { menuItem: 'Software', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
