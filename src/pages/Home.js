@@ -225,15 +225,17 @@ const Home = () => {
                                 </Table.Header>
                                 <Table.Body>
                                         {
-                                                items.map(({ id, author, isbn, publisherName, salesDate, title, contentType }) => {
-                                                        <Table.Row >
-                                                                <Table.Cell>{author}</Table.Cell>
-                                                                <Table.Cell>{isbn}</Table.Cell>
-                                                                <Table.Cell>{publisherName}</Table.Cell>
-                                                                <Table.Cell>{salesDate}</Table.Cell>
-                                                                <Table.Cell>{title}</Table.Cell>
-                                                                <Table.Cell>{contentType}</Table.Cell>
-                                                        </Table.Row>
+                                                items.map(({ id, author, isbn, publisherName, salesDate, title, type }) => {
+                                                        return (
+                                                                <Table.Row >
+                                                                        <Table.Cell>{author}</Table.Cell>
+                                                                        <Table.Cell>{isbn}</Table.Cell>
+                                                                        <Table.Cell>{publisherName}</Table.Cell>
+                                                                        <Table.Cell>{salesDate}</Table.Cell>
+                                                                        <Table.Cell>{title}</Table.Cell>
+                                                                        <Table.Cell>{type}</Table.Cell>
+                                                                </Table.Row>
+                                                        )
                                                 })
                                         }
                                 </Table.Body>
