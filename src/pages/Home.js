@@ -7,7 +7,7 @@ const Home = () => {
 
         const [msg, setMsg] = useState("");
         const [filled, setFilled] = useState({
-                contentType: "",
+                contentType: 0,
                 affiliateUrl: "",
                 artistName: "",
                 author: "",
@@ -62,12 +62,12 @@ const Home = () => {
                 event.preventDefault();
 
                 const params = {
-                        author: "author",
-                        title: "title",
-                        isbn: "isbn",
-                        publisherName: "p",
-                        salesDate: "s",
-                        type: "software",
+                        author: filled.author,
+                        title: filled.title,
+                        isbn: filled.isbn,
+                        publisherName: filled.publisherName,
+                        salesDate: filled.salesDate,
+                        type: filled.contentType,
                 }
                 fetch('http://localhost:3001/items', {
                         method: 'POST',
