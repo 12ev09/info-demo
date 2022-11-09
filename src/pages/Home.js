@@ -83,20 +83,20 @@ const Home = () => {
                                 //console.log(response);
                                 //console.log(response.data.Items[0].Item.author)
                                 if (response.data.Items[0].Item.hardware !== "") {
-                                        contentType = "Game";
+                                        contentType = 3;
                                         setActiveTabIndex("3");
                                         //setFilled({ contentType: "game", })
                                 } else if (response.data.Items[0].Item.os !== "") {
                                         //setFilled({ contentType: "software", })
-                                        contentType = "Software";
+                                        contentType = 2;
                                         setActiveTabIndex("2");
                                 } else if (response.data.Items[0].Item.artistName !== "") {
                                         //setFilled({ contentType: "CD_DVD_BD", })
-                                        contentType = "CD_DVD_BD";
+                                        contentType = 1;
                                         setActiveTabIndex("1");
                                 } else if (response.data.Items[0].Item.publisherName !== "") {
                                         //setFilled({ contentType: "books", })
-                                        contentType = "Books";
+                                        contentType = 0;
                                         setActiveTabIndex("0");
                                 } else {
                                         contentType = "Others";
@@ -146,11 +146,11 @@ const Home = () => {
         }
 
         const contentTypeSelect = [
-                { key: 'Books', value: 'Books', text: 'Books' },
-                { key: 'CD_DVD_BD', value: 'CD_DVD_BD', text: 'CD/DVD/BD' },
-                { key: 'Software', value: 'Software', text: 'Software' },
-                { key: 'Game', value: 'Game', text: 'Game' },
-                { key: 'Others', value: 'Others', text: 'Others' },
+                { key: 'Books', value: 0, text: 'Books' },
+                { key: 'CD_DVD_BD', value: 1, text: 'CD/DVD/BD' },
+                { key: 'Software', value: 2, text: 'Software' },
+                { key: 'Game', value: 3, text: 'Game' },
+                { key: 'Others', value: 4, text: 'Others' },
         ]
 
         const autofillRevisePanes = [
