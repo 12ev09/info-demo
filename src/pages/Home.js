@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import 'semantic-ui-css/semantic.min.css'
-import { Button, Input, Dropdown } from "semantic-ui-react";
+import { Button, Input, Dropdown, Tab, Grid, Container } from "semantic-ui-react";
 
 const Home = () => {
 
@@ -36,6 +36,7 @@ const Home = () => {
                 smallImageUrl: "",
                 title: "",
         });
+        const [activeTabIndex, setActiveTabIndex] = useState("")
 
         const handleChange = (input) => e => {
                 setFilled({ ...filled, [input]: e.target.value });
@@ -82,22 +83,27 @@ const Home = () => {
                                 //console.log(response);
                                 //console.log(response.data.Items[0].Item.author)
                                 if (response.data.Items[0].Item.hardware !== "") {
-                                        contentType = "Game";
+                                        contentType = 3;
+                                        setActiveTabIndex("3");
                                         //setFilled({ contentType: "game", })
                                 } else if (response.data.Items[0].Item.os !== "") {
                                         //setFilled({ contentType: "software", })
-                                        contentType = "Software";
+                                        contentType = 2;
+                                        setActiveTabIndex("2");
                                 } else if (response.data.Items[0].Item.artistName !== "") {
                                         //setFilled({ contentType: "CD_DVD_BD", })
-                                        contentType = "CD_DVD_BD";
+                                        contentType = 1;
+                                        setActiveTabIndex("1");
                                 } else if (response.data.Items[0].Item.publisherName !== "") {
                                         //setFilled({ contentType: "books", })
-                                        contentType = "Books";
+                                        contentType = 0;
+                                        setActiveTabIndex("0");
                                 } else {
                                         contentType = "Others";
+                                        setActiveTabIndex("4");
                                 }
 
-                                console.log(contentType);
+                                //console.log(contentType);
 
                                 setFilled(
                                         {//あたまわるい
@@ -131,7 +137,6 @@ const Home = () => {
                                                 title: response.data.Items[0].Item.title,
                                         })
                                 console.log(filled);
-
                         })
                         .catch(function (error) {
                                 console.log(error);
@@ -141,52 +146,80 @@ const Home = () => {
         }
 
         const contentTypeSelect = [
-                { key: 'Books', value: 'Books', text: 'Books' },
-                { key: 'CD_DVD_BD', value: 'CD_DVD_BD', text: 'CD/DVD/BD' },
-                { key: 'Goftware', value: 'Software', text: 'Software' },
-                { key: 'Game', value: 'Game', text: 'Game' },
-                { key: 'Others', value: 'Others', text: 'Others' },
+                { key: 'Books', value: 0, text: 'Books' },
+                { key: 'CD_DVD_BD', value: 1, text: 'CD/DVD/BD' },
+                { key: 'Software', value: 2, text: 'Software' },
+                { key: 'Game', value: 3, text: 'Game' },
+                { key: 'Others', value: 4, text: 'Others' },
+        ]
+
+        const autofillRevisePanes = [
+                {
+                        menuItem: 'Books', render: () =>
+                                <Tab.Pane>
+                                        <Grid stackable columns={3}>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>author</label>
+                                                                <input className="ui input" type="text" value={filled.author} onChange={handleChange('author')}></input>
+                                                        </div>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>isbn</label>
+                                                                <input className="ui input" type="text" value={filled.isbn} onChange={handleChange('isbn')}></input>
+                                                        </div>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>publisherName</label>
+                                                                <input className="ui input" type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input>
+                                                        </div>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>salesDate</label>
+                                                                <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
+                                                        </div>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>title</label>
+                                                                <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                                        </div>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>type</label>
+                                                                <Dropdown placeholder="Contents type" fluid search selection options={contentTypeSelect} value={filled.contentType} onChange={handleChange('contentType')}></Dropdown>
+                                                        </div>
+                                                </Grid.Column>
+                                        </Grid>
+                                </Tab.Pane>
+                },
+                { menuItem: 'CD/DVD/BD', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+                { menuItem: 'Software', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+                { menuItem: 'Games', render: () => <Tab.Pane>Tab 4 Content</Tab.Pane> },
+                { menuItem: 'Others', render: () => <Tab.Pane>Tab 5 Content</Tab.Pane> },
         ]
 
         return (
                 <div>
-                        <div className={"autofiller ui form"}>
-                                <p>home page.</p>
-                                <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
-                                        Search
-                                </button>
-                        </div>
-
-                        <form className="autofill_revise ui form" onSubmit={handleFormSubmit}>
-                                <div className="equal width fields">
-                                        <div className="field">
-                                                <label>author</label>
-                                                <input className="ui input" type="text" value={filled.author} onChange={handleChange('author')}></input>
-                                        </div>
-                                        <div className="field">
-                                                <label>isbn</label>
-                                                <input className="ui input" type="text" value={filled.isbn} onChange={handleChange('isbn')}></input>
-                                        </div>
-                                        <div className="field">
-                                                <label>publisherName</label>
-                                                <input className="ui input" type="text" value={filled.publisherName} onChange={handleChange('publisherName')}></input>
-                                        </div>
-                                        <div className="field">
-                                                <label>salesDate</label>
-                                                <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
-                                        </div>
-                                        <div className="field">
-                                                <label>title</label>
-                                                <input type="text" value={filled.title} onChange={handleChange('title')}></input>
-                                        </div>
-                                        <div className="field">
-                                                <label>type</label>
-                                                <Dropdown placeholder="Contents type" fluid search selection options={contentTypeSelect} value={filled.contentType} onChange={handleChange('contentType')}></Dropdown>
-                                        </div>
+                        <Container fruid>
+                                <div className={"autofiller ui form"}>
+                                        <p>home page.</p>
+                                        <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
+                                        <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
+                                                Search
+                                        </button>
                                 </div>
-                                <input className="ui positive button" type="submit" value="Confirm" />
-                        </form>
+                                <div class="ui divider"></div>
+                                <form className="autofill_revise ui form" onSubmit={handleFormSubmit}>
+                                        <Tab panes={autofillRevisePanes} activeIndex={activeTabIndex} onTabChange={(e) => setActiveTabIndex(e.target.value)} />
+                                        <input className="ui positive button" type="submit" value="Confirm" />
+                                </form>
+                        </Container>
+
                 </div >
         );
 }
