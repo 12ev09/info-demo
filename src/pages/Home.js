@@ -232,20 +232,23 @@ const Home = () => {
 
         return (
                 <div>
+                        <header style={{height: 45, width: '100%', padding: '0px 0px 0px 0px', margin:'0px auto 0px auto', display: 'flex', alignItems: 'center', backgroundColor:'pink'}}>
+                                <h1 style={{paddingLeft:'2%'}}>Rakuten API Search</h1>
+                        </header>
                         <Container fruid>
+                                
                                 <div className={"autofiller ui form"}>
-                                        <p>home page.</p>
-                                        <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                        <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
+                                        <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)} style={{margin:'20px 0px 20px 0px'}}></input>
+                                        <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")} style={{margin: '0px 0px 20px 0px'}}>
                                                 Search
                                         </button>
                                 </div>
                                 <div class="ui divider"></div>
                                 <form className="autofill_revise ui form" onSubmit={handleFormSubmit}>
                                         <Tab panes={autofillRevisePanes} activeIndex={activeTabIndex} onTabChange={(e) => setActiveTabIndex(e.target.value)} />
-                                        <input className="ui positive button" type="submit" value="Confirm" />
+                                        <input className="ui positive button" type="submit" value="Confirm" style={{marginTop:'20px'}}/>
                                 </form>
-                        </Container>
+                        
                         <Table celled fixed singleLine>
                                 <Table.Header>
                                         <Table.Row>
@@ -274,6 +277,10 @@ const Home = () => {
                                         }
                                 </Table.Body>
                         </Table>
+                        </Container>
+                        <footer style={{position:'absolute', height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
+                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©Yasuhiro kawabata All Rights Reserved.</p>
+                        </footer>
                 </div >
         );
 }
