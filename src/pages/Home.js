@@ -104,24 +104,24 @@ const Home = () => {
                                 //console.log(response);
                                 //console.log(response.data.Items[0].Item.author)
                                 if (response.data.Items[0].Item.hardware !== "") {
-                                        contentType = 3;
-                                        setActiveTabIndex("3");
+                                        contentType = 4;
+                                        setActiveTabIndex("4");
                                         //setFilled({ contentType: "game", })
                                 } else if (response.data.Items[0].Item.os !== "") {
                                         //setFilled({ contentType: "software", })
-                                        contentType = 2;
-                                        setActiveTabIndex("2");
+                                        contentType = 3;
+                                        setActiveTabIndex("3");
                                 } else if (response.data.Items[0].Item.artistName !== "") {
                                         //setFilled({ contentType: "CD_DVD_BD", })
-                                        contentType = 1;
-                                        setActiveTabIndex("1");
+                                        contentType = 2;
+                                        setActiveTabIndex("2");
                                 } else if (response.data.Items[0].Item.publisherName !== "") {
                                         //setFilled({ contentType: "books", })
-                                        contentType = 0;
-                                        setActiveTabIndex("0");
+                                        contentType = 1;
+                                        setActiveTabIndex("1");
                                 } else {
-                                        contentType = "Others";
-                                        setActiveTabIndex("4");
+                                        contentType = 5;
+                                        setActiveTabIndex("5");
                                 }
 
                                 //console.log(contentType);
@@ -213,11 +213,11 @@ const Home = () => {
                                                                         value={filled.contentType}
                                                                         onChange={handleChange('contentType')}
                                                                 >
-                                                                        <option value={0}>Books</option>
-                                                                        <option value={1}>CD/DVD/BD</option>
-                                                                        <option value={2}>Software</option>
-                                                                        <option value={3}>Games</option>
-                                                                        <option value={4}>Others</option>
+                                                                        <option value={1}>Books</option>
+                                                                        <option value={2}>CD/DVD/BD</option>
+                                                                        <option value={3}>Software</option>
+                                                                        <option value={4}>Games</option>
+                                                                        <option value={5}>Others</option>
                                                                 </select>
                                                         </div>
                                                 </Grid.Column>
