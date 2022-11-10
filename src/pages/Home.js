@@ -232,9 +232,11 @@ const Home = () => {
 
         return (
                 <div>
-                        <header style={{height: 45, width: '100%', padding: '0px 0px 0px 0px', margin:'0px auto 0px auto', display: 'flex', alignItems: 'center', backgroundColor:'pink'}}>
+                        <body>
+                        <header style={{height: '45px', width: '100%', padding: '0px 0px 0px 0px', margin:'0px auto 0px auto', display: 'flex', alignItems: 'center', backgroundColor:'pink'}}>
                                 <h1 style={{paddingLeft:'2%'}}>Rakuten API Search</h1>
                         </header>
+                        <main style={{minHeight: 'calc(100vh - 85px)'}}>
                         <Container fruid>
                                 
                                 <div className={"autofiller ui form"}>
@@ -278,9 +280,11 @@ const Home = () => {
                                 </Table.Body>
                         </Table>
                         </Container>
-                        <footer style={{position:'absolute', height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
+                        </main>
+                        <footer style={{height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
                                 <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©Yasuhiro kawabata All Rights Reserved.</p>
                         </footer>
+                        </body>
                 </div >
         );
 }
