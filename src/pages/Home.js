@@ -282,7 +282,7 @@ const Home = () => {
                         </Container>
                         </main>
                         <footer style={{height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
-                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©Yasuhiro kawabata All Rights Reserved.</p>
+                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©2022 Yasuhiro kawabata No Rights Reserved.</p>
                         </footer>
                         </body>
                 </div >
