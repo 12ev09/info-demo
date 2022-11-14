@@ -364,7 +364,7 @@ const Home = () => {
                                         <Grid.Column>
                                                 <div className="field">
                                                         <label>hardware</label>
-                                                        <input className="ui input" type="text" value={filled.os} onChange={handleChange('hardware')}></input>
+                                                        <input className="ui input" type="text" value={filled.hardware} onChange={handleChange('hardware')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
