@@ -105,23 +105,23 @@ const Home = () => {
                                 //console.log(response.data.Items[0].Item.author)
                                 if (response.data.Items[0].Item.hardware !== "") {
                                         contentType = 4;
-                                        setActiveTabIndex("4");
+                                        setActiveTabIndex(3);
                                         //setFilled({ contentType: "game", })
                                 } else if (response.data.Items[0].Item.os !== "") {
                                         //setFilled({ contentType: "software", })
                                         contentType = 3;
-                                        setActiveTabIndex("3");
+                                        setActiveTabIndex(2);
                                 } else if (response.data.Items[0].Item.artistName !== "") {
                                         //setFilled({ contentType: "CD_DVD_BD", })
                                         contentType = 2;
-                                        setActiveTabIndex("2");
+                                        setActiveTabIndex(1);
                                 } else if (response.data.Items[0].Item.publisherName !== "") {
                                         //setFilled({ contentType: "books", })
                                         contentType = 1;
-                                        setActiveTabIndex("1");
+                                        setActiveTabIndex(0);
                                 } else {
                                         contentType = 5;
-                                        setActiveTabIndex("5");
+                                        setActiveTabIndex(4);
                                 }
 
                                 //console.log(contentType);
@@ -142,7 +142,7 @@ const Home = () => {
                                                 itemCaption: response.data.Items[0].Item.itemCaption,
                                                 itemPrice: response.data.Items[0].Item.itemPrice,
                                                 itemUrl: response.data.Items[0].Item.itemUrl,
-                                                jan: response.data.Items[0].Item.isbn,
+                                                jan: response.data.Items[0].Item.jan,
                                                 label: response.data.Items[0].Item.label,
                                                 largeImageUrl: response.data.Items[0].Item.largeImageUrl,
                                                 limitedFlag: response.data.Items[0].Item.limitedFlag,
@@ -177,14 +177,14 @@ const Home = () => {
                                         <Grid stackable columns={3}>
                                                 <Grid.Column>
                                                         <div className="field">
-                                                                <label>author</label>
-                                                                <input className="ui input" type="text" value={filled.author} onChange={handleChange('author')}></input>
+                                                                <label>title</label>
+                                                                <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
                                                         </div>
                                                 </Grid.Column>
                                                 <Grid.Column>
                                                         <div className="field">
-                                                                <label>isbn</label>
-                                                                <input className="ui input" type="text" value={filled.isbn} onChange={handleChange('isbn')}></input>
+                                                                <label>author</label>
+                                                                <input className="ui input" type="text" value={filled.author} onChange={handleChange('author')}></input>
                                                         </div>
                                                 </Grid.Column>
                                                 <Grid.Column>
@@ -201,8 +201,8 @@ const Home = () => {
                                                 </Grid.Column>
                                                 <Grid.Column>
                                                         <div className="field">
-                                                                <label>title</label>
-                                                                <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                                                <label>isbn</label>
+                                                                <input className="ui input" type="text" value={filled.isbn} onChange={handleChange('isbn')}></input>
                                                         </div>
                                                 </Grid.Column>
                                                 <Grid.Column>
@@ -222,12 +222,212 @@ const Home = () => {
                                                         </div>
                                                 </Grid.Column>
                                         </Grid>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>Image</label>
+                                                        <img src={filled.largeImageUrl}></img>
+                                                </div>
+                                        </Grid.Column>
                                 </Tab.Pane >
                 },
-                { menuItem: 'CD/DVD/BD', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-                { menuItem: 'Software', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
-                { menuItem: 'Games', render: () => <Tab.Pane>Tab 4 Content</Tab.Pane> },
-                { menuItem: 'Others', render: () => <Tab.Pane>Tab 5 Content</Tab.Pane> },
+                {
+                        menuItem: 'CD/DVD/BD', render: () => <Tab.Pane>
+                                <Grid stackable columns={3}>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>title</label>
+                                                        <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>artistName</label>
+                                                        <input className="ui input" type="text" value={filled.artistName} onChange={handleChange('artistName')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>label</label>
+                                                        <input className="ui input" type="text" value={filled.label} onChange={handleChange('label')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>salesDate</label>
+                                                        <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>JAN</label>
+                                                        <input className="ui input" type="text" value={filled.jan} onChange={handleChange('jan')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>type</label>
+                                                        <select
+                                                                className="ui fluid search dropdown"
+                                                                value={filled.contentType}
+                                                                onChange={handleChange('contentType')}
+                                                        >
+                                                                <option value={1}>Books</option>
+                                                                <option value={2}>CD/DVD/BD</option>
+                                                                <option value={3}>Software</option>
+                                                                <option value={4}>Games</option>
+                                                                <option value={5}>Others</option>
+                                                        </select>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>Image</label>
+                                                        <img src={filled.largeImageUrl}></img>
+                                                </div>
+                                        </Grid.Column>
+                                </Grid>
+                        </Tab.Pane >
+                },
+                {
+                        menuItem: 'Software', render: () => <Tab.Pane>
+                                <Grid stackable columns={3}>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>os</label>
+                                                        <input className="ui input" type="text" value={filled.os} onChange={handleChange('os')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>JAN</label>
+                                                        <input className="ui input" type="text" value={filled.jan} onChange={handleChange('jan')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>label</label>
+                                                        <input className="ui input" type="text" value={filled.label} onChange={handleChange('label')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>salesDate</label>
+                                                        <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>title</label>
+                                                        <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>type</label>
+                                                        <select
+                                                                className="ui fluid search dropdown"
+                                                                value={filled.contentType}
+                                                                onChange={handleChange('contentType')}
+                                                        >
+                                                                <option value={1}>Books</option>
+                                                                <option value={2}>CD/DVD/BD</option>
+                                                                <option value={3}>Software</option>
+                                                                <option value={4}>Games</option>
+                                                                <option value={5}>Others</option>
+                                                        </select>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>Image</label>
+                                                        <img src={filled.largeImageUrl}></img>
+                                                </div>
+                                        </Grid.Column>
+                                </Grid>
+                        </Tab.Pane >
+                },
+                {
+                        menuItem: 'Games', render: () => <Tab.Pane>
+                                <Grid stackable columns={3}>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>hardware</label>
+                                                        <input className="ui input" type="text" value={filled.os} onChange={handleChange('hardware')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>JAN</label>
+                                                        <input className="ui input" type="text" value={filled.jan} onChange={handleChange('jan')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>label</label>
+                                                        <input className="ui input" type="text" value={filled.label} onChange={handleChange('label')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>salesDate</label>
+                                                        <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>title</label>
+                                                        <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>type</label>
+                                                        <select
+                                                                className="ui fluid search dropdown"
+                                                                value={filled.contentType}
+                                                                onChange={handleChange('contentType')}
+                                                        >
+                                                                <option value={1}>Books</option>
+                                                                <option value={2}>CD/DVD/BD</option>
+                                                                <option value={3}>Software</option>
+                                                                <option value={4}>Games</option>
+                                                                <option value={5}>Others</option>
+                                                        </select>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>Image</label>
+                                                        <img src={filled.largeImageUrl}></img>
+                                                </div>
+                                        </Grid.Column>
+                                </Grid>
+                        </Tab.Pane >
+                },
+                {
+                        menuItem: 'Others', render: () => <Tab.Pane>
+                                <Grid stackable columns={3}>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>listPrice</label>
+                                                        <input className="ui input" type="text" value={filled.listPrice} onChange={handleChange('listPrice')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>largeImageURL</label>
+                                                        <input className="ui input" type="text" value={filled.largeImageUrl} onChange={handleChange('largeImageUrl')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
+                                                        <label>Image</label>
+                                                        <img src={filled.largeImageUrl}></img>
+                                                </div>
+                                        </Grid.Column>
+                                </Grid>
+                        </Tab.Pane>
+                },
         ]
 
         return (
