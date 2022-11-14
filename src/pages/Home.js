@@ -221,6 +221,12 @@ const Home = () => {
                                                                 </select>
                                                         </div>
                                                 </Grid.Column>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>img</label>
+                                                                <img src={filled.largeImageUrl}></img>
+                                                        </div>
+                                                </Grid.Column>
                                         </Grid>
                                 </Tab.Pane >
                 },
@@ -232,20 +238,25 @@ const Home = () => {
 
         return (
                 <div>
+                        <body>
+                        <header style={{height: '45px', width: '100%', padding: '0px 0px 0px 0px', margin:'0px auto 0px auto', display: 'flex', alignItems: 'center', backgroundColor:'pink'}}>
+                                <h1 style={{paddingLeft:'2%'}}>Rakuten API Search</h1>
+                        </header>
+                        <main style={{minHeight: 'calc(100vh - 85px)'}}>
                         <Container fruid>
+                                
                                 <div className={"autofiller ui form"}>
-                                        <p>home page.</p>
-                                        <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)}></input>
-                                        <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")}>
+                                        <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)} style={{margin:'20px 0px 20px 0px'}}></input>
+                                        <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")} style={{margin: '0px 0px 20px 0px'}}>
                                                 Search
                                         </button>
                                 </div>
                                 <div class="ui divider"></div>
                                 <form className="autofill_revise ui form" onSubmit={handleFormSubmit}>
                                         <Tab panes={autofillRevisePanes} activeIndex={activeTabIndex} onTabChange={(e) => setActiveTabIndex(e.target.value)} />
-                                        <input className="ui positive button" type="submit" value="Confirm" />
+                                        <input className="ui positive button" type="submit" value="Confirm" style={{marginTop:'20px'}}/>
                                 </form>
-                        </Container>
+                        
                         <Table celled fixed singleLine>
                                 <Table.Header>
                                         <Table.Row>
@@ -274,6 +285,12 @@ const Home = () => {
                                         }
                                 </Table.Body>
                         </Table>
+                        </Container>
+                        </main>
+                        <footer style={{height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
+                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©2022 Yasuhiro Kawabata Some Rights Reserved.</p>
+                        </footer>
+                        </body>
                 </div >
         );
 }
