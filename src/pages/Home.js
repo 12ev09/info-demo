@@ -221,6 +221,12 @@ const Home = () => {
                                                                 </select>
                                                         </div>
                                                 </Grid.Column>
+                                                <Grid.Column>
+                                                        <div className="field">
+                                                                <label>img</label>
+                                                                <img src={filled.largeImageUrl}></img>
+                                                        </div>
+                                                </Grid.Column>
                                         </Grid>
                                 </Tab.Pane >
                 },
@@ -282,7 +288,7 @@ const Home = () => {
                         </Container>
                         </main>
                         <footer style={{height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
-                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©2022 Yasuhiro kawabata Some Rights Reserved.</p>
+                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©2022 Yasuhiro Kawabata Some Rights Reserved.</p>
                         </footer>
                         </body>
                 </div >
