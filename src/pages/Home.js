@@ -223,17 +223,11 @@ const Home = () => {
                                                 </Grid.Column>
                                                 <Grid.Column>
                                                         <div className="field">
-                                                                <label>img</label>
+                                                                <label>Image</label>
                                                                 <img src={filled.largeImageUrl}></img>
                                                         </div>
                                                 </Grid.Column>
                                         </Grid>
-                                        <Grid.Column>
-                                                <div className="field">
-                                                        <label>Image</label>
-                                                        <img src={filled.largeImageUrl}></img>
-                                                </div>
-                                        </Grid.Column>
                                 </Tab.Pane >
                 },
                 {
@@ -299,14 +293,8 @@ const Home = () => {
                                 <Grid stackable columns={3}>
                                         <Grid.Column>
                                                 <div className="field">
-                                                        <label>os</label>
-                                                        <input className="ui input" type="text" value={filled.os} onChange={handleChange('os')}></input>
-                                                </div>
-                                        </Grid.Column>
-                                        <Grid.Column>
-                                                <div className="field">
-                                                        <label>JAN</label>
-                                                        <input className="ui input" type="text" value={filled.jan} onChange={handleChange('jan')}></input>
+                                                        <label>title</label>
+                                                        <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
@@ -317,14 +305,20 @@ const Home = () => {
                                         </Grid.Column>
                                         <Grid.Column>
                                                 <div className="field">
+                                                        <label>os</label>
+                                                        <input className="ui input" type="text" value={filled.os} onChange={handleChange('os')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
                                                         <label>salesDate</label>
                                                         <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
                                                 <div className="field">
-                                                        <label>title</label>
-                                                        <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                                        <label>JAN</label>
+                                                        <input className="ui input" type="text" value={filled.jan} onChange={handleChange('jan')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
@@ -357,14 +351,8 @@ const Home = () => {
                                 <Grid stackable columns={3}>
                                         <Grid.Column>
                                                 <div className="field">
-                                                        <label>hardware</label>
-                                                        <input className="ui input" type="text" value={filled.os} onChange={handleChange('hardware')}></input>
-                                                </div>
-                                        </Grid.Column>
-                                        <Grid.Column>
-                                                <div className="field">
-                                                        <label>JAN</label>
-                                                        <input className="ui input" type="text" value={filled.jan} onChange={handleChange('jan')}></input>
+                                                        <label>title</label>
+                                                        <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
@@ -375,14 +363,20 @@ const Home = () => {
                                         </Grid.Column>
                                         <Grid.Column>
                                                 <div className="field">
+                                                        <label>hardware</label>
+                                                        <input className="ui input" type="text" value={filled.os} onChange={handleChange('hardware')}></input>
+                                                </div>
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                                <div className="field">
                                                         <label>salesDate</label>
                                                         <input className="ui input" type="text" value={filled.salesDate} onChange={handleChange('salesDate')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
                                                 <div className="field">
-                                                        <label>title</label>
-                                                        <input className="ui input" type="text" value={filled.title} onChange={handleChange('title')}></input>
+                                                        <label>JAN</label>
+                                                        <input className="ui input" type="text" value={filled.jan} onChange={handleChange('jan')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
@@ -415,8 +409,8 @@ const Home = () => {
                                 <Grid stackable columns={3}>
                                         <Grid.Column>
                                                 <div className="field">
-                                                        <label>listPrice</label>
-                                                        <input className="ui input" type="text" value={filled.listPrice} onChange={handleChange('listPrice')}></input>
+                                                        <label>itemPrice</label>
+                                                        <input className="ui input" type="text" value={filled.itemPrice} onChange={handleChange('listPrice')}></input>
                                                 </div>
                                         </Grid.Column>
                                         <Grid.Column>
@@ -439,57 +433,57 @@ const Home = () => {
         return (
                 <div>
                         <body>
-                        <header style={{height: '45px', width: '100%', padding: '0px 0px 0px 0px', margin:'0px auto 0px auto', display: 'flex', alignItems: 'center', backgroundColor:'pink'}}>
-                                <h1 style={{paddingLeft:'2%'}}>Rakuten API Search</h1>
-                        </header>
-                        <main style={{minHeight: 'calc(100vh - 85px)'}}>
-                        <Container fruid>
-                                
-                                <div className={"autofiller ui form"}>
-                                        <input type="text" value={msg} placeholder="入力してください" onChange={(e) => setMsg(e.target.value)} style={{margin:'20px 0px 20px 0px'}}></input>
-                                        <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")} style={{margin: '0px 0px 20px 0px'}}>
-                                                Search
-                                        </button>
-                                </div>
-                                <div class="ui divider"></div>
-                                <form className="autofill_revise ui form" onSubmit={handleFormSubmit}>
-                                        <Tab panes={autofillRevisePanes} activeIndex={activeTabIndex} onTabChange={(e) => setActiveTabIndex(e.target.value)} />
-                                        <input className="ui positive button" type="submit" value="Confirm" style={{marginTop:'20px'}}/>
-                                </form>
-                        
-                        <Table celled fixed singleLine>
-                                <Table.Header>
-                                        <Table.Row>
-                                                <Table.HeaderCell>Author</Table.HeaderCell>
-                                                <Table.HeaderCell>JAN</Table.HeaderCell>
-                                                <Table.HeaderCell>PublisherName</Table.HeaderCell>
-                                                <Table.HeaderCell>SalesDate</Table.HeaderCell>
-                                                <Table.HeaderCell>Title</Table.HeaderCell>
-                                                <Table.HeaderCell>Type</Table.HeaderCell>
-                                        </Table.Row>
-                                </Table.Header>
-                                <Table.Body>
-                                        {
-                                                items.map(({ id, author, isbn, publisherName, salesDate, title, type }) => {
-                                                        return (
-                                                                <Table.Row >
-                                                                        <Table.Cell>{author}</Table.Cell>
-                                                                        <Table.Cell>{isbn}</Table.Cell>
-                                                                        <Table.Cell>{publisherName}</Table.Cell>
-                                                                        <Table.Cell>{salesDate}</Table.Cell>
-                                                                        <Table.Cell>{title}</Table.Cell>
-                                                                        <Table.Cell>{type}</Table.Cell>
+                                <header style={{ height: '45px', width: '100%', padding: '0px 0px 0px 0px', margin: '0px auto 0px auto', display: 'flex', alignItems: 'center', backgroundColor: 'pink' }}>
+                                        <h1 style={{ paddingLeft: '2%' }}>Rakuten API Search</h1>
+                                </header>
+                                <main style={{ minHeight: 'calc(100vh - 85px)' }}>
+                                        <Container fruid>
+
+                                                <div className={"autofiller ui form"}>
+                                                        <input type="text" value={msg} placeholder="JAN/ISBNコードを入力してください" onChange={(e) => setMsg(e.target.value)} style={{ margin: '20px 0px 20px 0px' }}></input>
+                                                        <button className="ui positive button" onClick={() => getInfo((msg !== "") ? msg : "9784908686153")} style={{ margin: '0px 0px 20px 0px' }}>
+                                                                Search
+                                                        </button>
+                                                </div>
+                                                <div class="ui divider"></div>
+                                                <form className="autofill_revise ui form" onSubmit={handleFormSubmit}>
+                                                        <Tab panes={autofillRevisePanes} activeIndex={activeTabIndex} onTabChange={(e) => setActiveTabIndex(e.target.value)} />
+                                                        <input className="ui positive button" type="submit" value="Confirm" style={{ marginTop: '20px' }} />
+                                                </form>
+
+                                                <Table celled fixed singleLine>
+                                                        <Table.Header>
+                                                                <Table.Row>
+                                                                        <Table.HeaderCell>Author</Table.HeaderCell>
+                                                                        <Table.HeaderCell>JAN</Table.HeaderCell>
+                                                                        <Table.HeaderCell>PublisherName</Table.HeaderCell>
+                                                                        <Table.HeaderCell>SalesDate</Table.HeaderCell>
+                                                                        <Table.HeaderCell>Title</Table.HeaderCell>
+                                                                        <Table.HeaderCell>Type</Table.HeaderCell>
                                                                 </Table.Row>
-                                                        )
-                                                })
-                                        }
-                                </Table.Body>
-                        </Table>
-                        </Container>
-                        </main>
-                        <footer style={{height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
-                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©2022 Yasuhiro Kawabata Some Rights Reserved.</p>
-                        </footer>
+                                                        </Table.Header>
+                                                        <Table.Body>
+                                                                {
+                                                                        items.map(({ id, author, isbn, publisherName, salesDate, title, type }) => {
+                                                                                return (
+                                                                                        <Table.Row >
+                                                                                                <Table.Cell>{author}</Table.Cell>
+                                                                                                <Table.Cell>{isbn}</Table.Cell>
+                                                                                                <Table.Cell>{publisherName}</Table.Cell>
+                                                                                                <Table.Cell>{salesDate}</Table.Cell>
+                                                                                                <Table.Cell>{title}</Table.Cell>
+                                                                                                <Table.Cell>{type}</Table.Cell>
+                                                                                        </Table.Row>
+                                                                                )
+                                                                        })
+                                                                }
+                                                        </Table.Body>
+                                                </Table>
+                                        </Container>
+                                </main>
+                                <footer style={{ height: '30px', width: '100%', display: 'flex', alignItems: 'center', margin: '10px auto 0px auto', backgroundColor: 'pink' }}>
+                                        <p style={{ paddingLeft: '2%', verticalAlign: 'middle' }}>©2022 Yasuhiro Kawabata Some Rights Reserved.</p>
+                                </footer>
                         </body>
                 </div >
         );
