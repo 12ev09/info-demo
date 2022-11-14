@@ -240,9 +240,9 @@ const Home = () => {
                 <div>
                         <body>
                         <header style={{height: '45px', width: '100%', padding: '0px 0px 0px 0px', margin:'0px auto 0px auto', display: 'flex', alignItems: 'center', backgroundColor:'pink'}}>
-                                <h1 style={{paddingLeft:'2%'}}>Rakuten API Search</h1>
+                                <h1 style={{paddingLeft:'2%'}}>RAPISS -Rakuten API Search & Save-</h1>
                         </header>
-                        <main style={{minHeight: 'calc(100vh - 85px)'}}>
+                        <main style={{minHeight: 'calc(100vh - 105px)'}}>
                         <Container fruid>
                                 
                                 <div className={"autofiller ui form"}>
@@ -287,8 +287,10 @@ const Home = () => {
                         </Table>
                         </Container>
                         </main>
-                        <footer style={{height:'30px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
-                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>©2022 Team Kawabata All Rights Reserved.</p>
+                        <footer style={{height:'50px', width:'100%', display: 'flex', alignItems: 'center', margin:'10px auto 0px auto', backgroundColor:'pink'}}>
+                                <marquee direction='left' scrollamount='5'>
+                                <p style={{paddingLeft:'2%', verticalAlign:'middle'}}>このサイトは楽天ブックス総合検索APIを使用しています。<br></br>©2022 Team Kawabata All Rights Reserved.</p>
+                                </marquee>
                         </footer>
                         </body>
                 </div >
